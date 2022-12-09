@@ -1,0 +1,45 @@
+<h2 mat-dialog-title align="center">Modifier un nouveau plan repas</h2>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez la categorie du plan repas</mat-label>
+    <input matInput type="text" maxlength="20" placeholder="Exemple : italien"  [formControl]="categorie" required>
+    <mat-error *ngIf="categorie.value.length <1"> longueur de categorie invalide </mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez la Fréquence du plan repas</mat-label>
+    <input  matInput type="text" maxlength="30" placeholder="Exemple : italien"  [formControl]="frequence" required>
+    <mat-error *ngIf="frequence.value < 0"> Fréquence invalide </mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez le nombre de calories du plan repas</mat-label>
+    <input  matInput type="text" maxlength="30" placeholder="Exemple : italien"  [formControl]="nbrcalories" required>
+    <mat-error *ngIf="nbrcalories.value < 0"> Nombre de calories invalide </mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez le nombre de personnes du plan repas</mat-label>
+    <input  matInput type="text" maxlength="30" placeholder="Exemple : italien"   [formControl]="nbrpersonnes" required>
+    <mat-error *ngIf="nbrpersonnes.value < 0"> nombre de personnes invalide </mat-error>
+
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez le numéro fournisseur du plan repas</mat-label>
+    <mat-select [(ngModel)]="numerofournisseur">
+        <mat-option *ngFor="let numerofournisseur of fournisseurs" [value]="numerofournisseur">
+          {{numerofournisseur}}
+        </mat-option>
+      </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Choisissez prix du plan repas</mat-label>
+    <input matInput type="text" maxlength="30" placeholder="Exemple : italien"  [formControl]="prix" required>
+    <mat-error *ngIf="prix.value < 0"> prix invalide </mat-error>
+</mat-form-field>
+<div>
+    <button mat-button mat-dialog-close color="primary"
+    *ngIf="isValid()"
+        (click)="updatePlanRepas()">Modifier</button>
+    <button mat-button mat-dialog-close color="primary">Annuler <mat-icon>clear</mat-icon></button>
+</div>
+

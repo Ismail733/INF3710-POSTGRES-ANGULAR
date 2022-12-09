@@ -1,0 +1,17 @@
+<div>
+  <nav class="navbar navbar-dark bg-dark main-nav">
+    <a class="navbar-brand title" href="/" matTooltip="Retournez à l'accueil">INF3710 - TP4</a>
+    <div class="navbar-expand mr-auto">
+      <div class="navbar-nav">
+      </div>
+    </div>
+  </nav>
+
+  <div class="home" *ngIf="route == ''">
+    <p>
+      Bienvenue dans notre site, savourer le repas de votre choix!
+    </p>
+    <button mat-raised-button color="primary" class="btn" routerLink="/plan-repas">Voir les plans-repas<mat-icon>arrow_right</mat-icon></button>
+  </div>
+  <router-outlet></router-outlet>
+</div>

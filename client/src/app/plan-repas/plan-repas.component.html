@@ -1,0 +1,50 @@
+<div style="text-align: center">
+    <button mat-raised-button color="primary" class="btn" (click)="insertPlanRepas()"><mat-icon>library_add</mat-icon> INSÈRER</button>
+</div>
+<mat-table mat-table matSort matSortActive="nom" matSortDirection="desc" matSortDisableClear (matSortChange)="sortData($event)" [dataSource]="planRepas">
+    <!-- User name Definition -->
+    <ng-container matColumnDef="numeroplan">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Numéro </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.numeroplan}} </mat-cell>
+    </ng-container>
+  
+    <!-- Age Definition -->
+    <ng-container matColumnDef="categorie">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Catégorie </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.categorie}} </mat-cell>
+    </ng-container>
+  
+    <!-- Title Definition -->
+    <ng-container matColumnDef="frequence">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Fréquence </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.frequence}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nbrcalories">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Nombre de calorie </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.nbrcalories}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="nbrpersonnes">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Nombre de personne </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.nbrpersonnes}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="numerofournisseur">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Numéro du fournisseur </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.numerofournisseur}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="prix">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Prix </mat-header-cell>
+      <mat-cell class="black" *matCellDef="let row"> {{row.prix}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="bouton">
+      <mat-header-cell class="thicker" *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let plan">  
+            <button mat-raised-button color="primary" class="btn" (click)="updatePlanRepas(plan)"><mat-icon>update</mat-icon> MODIFIER</button>
+            <br>
+            <button mat-raised-button color="primary" class="btn" (click)="deletePlanRepas(plan)"><mat-icon>delete_outline</mat-icon> SUPPRIMER</button>        
+        </mat-cell>
+    </ng-container>
+  
+    <!-- Header and Row Declarations -->
+    <mat-header-row *matHeaderRowDef="['numeroplan', 'categorie', 'frequence', 'nbrcalories', 'nbrpersonnes', 'numerofournisseur', 'prix', 'bouton' ]"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['numeroplan', 'categorie', 'frequence', 'nbrcalories', 'nbrpersonnes', 'numerofournisseur', 'prix', 'bouton' ]"></mat-row>
+  </mat-table>

@@ -7,7 +7,7 @@ import { PlanRepas } from "../table/interface-plan-repas";
 export class DatabaseService {
   public connectionConfig: pg.ConnectionConfig = {
     user: "postgres",
-    database: "TP4_Livraison",
+    database: "DERNIER",
     password: "root",
     port: 5432,
     host: "127.0.0.1",

@@ -20,24 +20,16 @@ where nomfournisseur is null;
 
 
 -- 4.5
-select nomfournisseur
-from planrepas inner join fournisseur 
-on planrepas.numerofournisseur = fournisseur.numerofournisseur
-where prix > (select max(prix)
-from planrepas inner join fournisseur
-on planrepas.numerofournisseur = fournisseur.numerofournisseur
-where nomfournisseur = 'AB Transport')
-group by nomfournisseur;
-
-select f.nomfournisseur from fournisseur f, planrepas p
+select distinct f.nomfournisseur from fournisseur f, planrepas p
 where p.numerofournisseur = f.numerofournisseur
 and p.prix > ALL(select prix from fournisseur f1, planrepas p1
                 where p1.numerofournisseur = f1.numerofournisseur
                 and f1.nomfournisseur = 'AB Transport');
 
 
+
 -- 4.6
-select nomfournisseur, adressefournisseur, sum(prix) as "Somme des prix"
+select nomfournisseur, adressefournisseur, sum(prix) as "Somme Prix"
 from planrepas inner join fournisseur 
 on planrepas.numerofournisseur = fournisseur.numerofournisseur
 where fournisseur.numerofournisseur
@@ -48,17 +40,17 @@ order by prix desc limit 2)
 group by fournisseur.numerofournisseur;
 
 -- 4.7
-select count() as "nombre de kit repas jamais réservés chez les fournisseurs" 
-from kitrepas 
-where numerokitrepas not in 
-(select numerokitrepas 
- from abonner inner join kitrepas 
- on abonner.numeroplan = kitrepas.numeroplan);
+select COUNT(*) from Kitrepas
+where numerokitrepas in (select numeroplan
+                            from Kitrepas)
+and numeroplan in (select numeroplan 
+                    from Planrepas );
+
 
 
 -- 4.8
 select numeroclient, nomclient, prenomclient from client
-where left(prenomclient, 1) not in ('a', 'e', 'i', 'o', 'u', 'y')
+where left(prenomclient, 1) not in ('a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y')
 and villeclient = (select adressefournisseur from fournisseur 
 where nomfournisseur = 'Benjamin')
 order by nomclient asc;

@@ -129,10 +129,10 @@ insert into client (prenomclient, nomclient, adressecourrielclient, rueclient, v
 VALUES ('luffy', 'monkey', 'luffy.monkey@gmtayo.com', 'rue fuschia', 'eastblue', 'j0u6t3');
 
 insert into client (prenomclient, nomclient, adressecourrielclient, rueclient, villeclient, codepostalclient)
-VALUES ('zoro', 'roronoa', 'zoro.roronoa@gmtayo.com', 'boulevard mihawk', 'eastblue', 'h2s0k8');
+VALUES ('zoro', 'roronoa', 'zoro.roronoa@gmtayo.com', 'boulevard mihawk', 'rabat', 'h2s0k8');
 
 insert into client (prenomclient, nomclient, adressecourrielclient, rueclient, villeclient, codepostalclient)
-VALUES ('nami', 'clara', 'nami.clara@gmtayo.com', 'avenue ducharme', 'ismaville', 't2j4m7');
+VALUES ('nami', 'clara', 'nami.clara@gmtayo.com', 'avenue ducharme', 'rabat', 't2j4m7');
 
 insert into client (prenomclient, nomclient, adressecourrielclient, rueclient, villeclient, codepostalclient)
 VALUES ('ismtayo', 'du-matin', 'ismtayo.du-matin@gmtayo.com', 'rue ismaempire', 'ismaville', 'h3s9f3');
@@ -199,6 +199,12 @@ VALUES ('indien', 2, 2200, 4, 28, (select numerofournisseur from fournisseur whe
 
 insert into planrepas (categorie, frequence, nbrcalories, nbrpersonnes, prix, numerofournisseur)
 VALUES ('indien', 3, 5260, 3, 42, (select numerofournisseur from fournisseur where (nomfournisseur = 'AB Transport')));
+
+insert into planrepas (categorie, frequence, nbrcalories, nbrpersonnes, prix, numerofournisseur)
+VALUES ('carnivore', 3, 2400, 3, 20000, (select numerofournisseur from fournisseur where (nomfournisseur = 'Benjamin')));
+
+insert into planrepas (categorie, frequence, nbrcalories, nbrpersonnes, prix, numerofournisseur)
+VALUES ('herbivore', 3, 2400, 3, 25000, (select numerofournisseur from fournisseur where (nomfournisseur = 'QC Transport')));
 
 
 insert into Famille (numeroplan)
@@ -289,6 +295,9 @@ VALUES ('olives', 'syrie');
 insert into ingredient (nomingredient, paysingredient) 
 VALUES ('cornichon', 'japon');
 
+insert into ingredient (nomingredient, paysingredient) 
+VALUES ('live', 'espagne');
+
 
 insert into Contenir (numeroingredient, numerokitrepas)
 VALUES ((select numeroingredient from ingredient where (nomingredient = 'goberge' and paysingredient = 'maroc')), 
@@ -341,4 +350,8 @@ VALUES (1, 1, (select numerokitrepas from Kitrepas where description = 'la viand
 insert into etape (numeroetape, numerosousetape, numerokitrepas, descriptionetape, dureeetape)
 VALUES (2, 1, (select numerokitrepas from Kitrepas where description = 'la viande est bonne pour la santé, mangez autant que possible les amis.'), 'Faire revenir les oignons et le boeuf.', '00:5:30');
 
+insert into Abonner (duree, numeroplan, numeroclient)
+VALUES (20, 
+(select numeroplan from planrepas where (categorie = 'parmesan' and prix = 28)), 
+(select numeroclient from client where (prenomclient = 'luffy' and nomclient = 'monkey')));
 

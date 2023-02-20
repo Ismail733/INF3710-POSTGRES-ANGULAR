@@ -14,7 +14,7 @@ Application Web de recettes.
 - Allez dans `/server` et lancez la commande `npm ci` dans un terminal.
 - Allez dans `/server/app/services/database.service.ts` et modifiez `connectionConfig` avec les bons paramètres de votre BD. 
 
-Exemple de configuration :
+## Exemple de configuration :
 
 - Créez une base de données (le nom de votre choix) et postgres comme user
 - Définissez le mot de passe de postgres à root (Login/Group Roles -> Click droit sur postgres -> Properties -> Definition)
